@@ -1,0 +1,141 @@
+#=====================================================================================
+# Part 1: Private Keys & Certificates (Content-based)
+# =====================================================================================
+-----BEGIN ((EC|PGP|DSA|RSA|OPENSSH) )?PRIVATE KEY( BLOCK)?-----::Generic or Specific Private Key Block
+-----BEGIN CERTIFICATE-----::X.509 Certificate
+PuTTY-User-Key-File-2::PuTTYgen Private Key File Content
+
+# =====================================================================================
+# Part 2: Cloud Provider Credentials
+# =====================================================================================
+
+# --- Amazon Web Services (AWS) ---
+(A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}::AWS Access Key ID
+[aA][wW][sS](.{0,20})?([sS][eE][cC][rR][eE][tT]|[tT][oO][kK][eE][nN]|[kK][eE][yY])['"]?\s*[:=]\s*['"]?[A-Za-z0-9\/+]{40}['"]?::AWS Secret Access Key
+amzn\.mws\.[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}::Amazon MWS Auth Token
+[a-zA-Z0-9\-_]+\.dkr\.ecr\.[a-zA-Z0-9\-]+\.amazonaws\.com::AWS ECR Registry Host
+s3\.amazonaws\.com/[a-zA-Z0-9\._-]+::S3 Bucket URL
+[a-zA-Z0-9\._-]+\.s3-website[.-](eu|ap|us|ca|sa|cn)-\w+-\d+\.amazonaws\.com::S3 Website Endpoint
+
+# --- Google Cloud Platform (GCP) ---
+AIza[0-9A-Za-z\\-_]{35}::Google API Key
+[0-9]+-[0-9a-z_]{32}\.apps\.googleusercontent\.com::Google OAuth Client ID
+"private_key_id":\s*"[0-9a-fA-F]{40}"::GCP Service Account Private Key ID
+"private_key":\s*"-----BEGIN PRIVATE KEY-----\\n[a-zA-Z0-9=\\n\/+]+-----END PRIVATE KEY-----\\n"::GCP Service Account Private Key
+[a-z0-9-]+\.firebaseio\.com::Firebase Realtime Database URL
+
+# --- Microsoft Azure ---
+[aA][zZ][uU][rR][eE](.{0,20})?([sS][eE][cC][rR][eE][tT]|[tT][oO][kK][eE][nN]|[kK][eE][yY]|[pP][aA][sS][sS][wW][oO][rR][dD])['"]?\s*[:=]\s*['"]?[0-9a-zA-Z\/+~_-]{80,90}['"]?::Azure Secret Key
+
+# --- Digital Ocean ---
+dop_v1_[a-f0-9]{64}::DigitalOcean Personal Access Token v2
+
+# --- Heroku ---
+[hH][eE][rR][oO][kK][uU](.{0,20})?[kK][eE][yY]['"]?\s*[:=]\s*['"]?[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}['"]?::Heroku API Key
+
+# =====================================================================================
+# Part 3: Database & Generic Connection Strings
+# =====================================================================================
+mongodb(?:\+srv)?:\/\/(?:[a-zA-Z0-9\.\-_]+:[^@\s]+@)?(?:[a-zA-Z0-9\.\-_]+):?(\d+)?::MongoDB Connection String
+postgres(ql)?:\/\/[a-zA-Z0-9\._~\-%]+:[^@\s]+@[^:\s]+(:[0-9]+)?\/[a-zA-Z0-9_]+::PostgreSQL Connection String
+mysql:\/\/[a-zA-Z0-9\._~\-%]+:[^@\s]+@[^:\s]+(:[0-9]+)?\/[a-zA-Z0-9_]+::MySQL Connection String
+redis:\/\/[^@\s]*@[^:\s]+:[0-9]+::Redis Connection String
+amqp(s)?:\/\/[^:\s]+:[^@\s]+@[^:\s]+::AMQP Connection String
+jdbc:(mysql|postgresql|oracle|sqlserver|mariadb|h2|sqlite):(\/\/|:).+::JDBC Connection String
+https?:\/\/[a-zA-Z0-9\._~\-%]+:[^@\s]+@[a-zA-Z0-9\.\-]+::HTTP/S URL with Password (e.g., git-credentials)
+
+# =====================================================================================
+# Part 4: API & Service Tokens
+# =====================================================================================
+
+# --- Version Control (GitHub, GitLab, Bitbucket) ---
+ghp_[a-zA-Z0-9]{36}::GitHub Personal Access Token
+github_pat_[a-zA-Z0-9_]{82}::GitHub Fine-Grained Personal Access Token
+gho_[a-zA-Z0-9]{36}::GitHub OAuth Token
+ghu_[a-zA-Z0-9]{36}::GitHub User-to-Server Token
+ghs_[a-zA-Z0-9]{36}::GitHub Server-to-Server Token
+ghr_[a-zA-Z0-9]{36}::GitHub Refresh Token
+glpat-[a-zA-Z0-9\-_]{20}::GitLab Personal Access Token
+[bB][iI][tT][bB][uU][cC][kK][eE][tT]_[kK][eE][yY]['"]?\s*[:=]\s*['"]?[a-zA-Z0-9_]{15,30}['"]?::Bitbucket API Key
+
+# --- CI/CD & DevOps (Travis, CircleCI, etc.) ---
+[tT][rR][aA][vV][iI][sS]_[tT][oO][kK][eE][nN]['"]?\s*[:=,]\s*['"]?[a-zA-Z0-9-]{20,24}['"]?::Travis CI Token
+[cC][iI][rR][cC][lL][eE][cC][iI]_[tT][oO][kK][eE][nN]['"]?\s*[:=,]\s*['"]?[a-fA-F0-9]{40}['"]?::CircleCI Token
+sonartoken_[a-f0-9]{40}::SonarQube Access Token
+[sS][nN][yY][kK]_[tT][oO][kK][eE][nN]['"]?\s*[:=]\s*[a-fA-F0-9]{8}-(?:[a-fA-F0-9]{4}-){3}[a-fA-F0-9]{12}::Snyk API Token
+[cC][oO][dD][eE][cC][oO][vV]_[tT][oO][kK][eE][nN]['"]?\s*[:=,]\s*['"]?[a-f0-9]{8}-(?:[a-f0-9]{4}-){3}[a-f0-9]{12}['"]?::Codecov Token
+[vV][aA][uU][lL][tT]-[tT][oO][kK][eE][nN]['"]?\s*[:=,]\s*['"]?s\.[a-zA-Z0-9]{24}['"]?::HashiCorp Vault Token
+[jJ][fF][rR][oO][gG]_[aA][pP][iI]_[kK][eE][yY]['"]?\s*[:=]\s*"(?:[a-zA-Z0-9=]+)"::JFrog Artifactory API Key
+[sS][aA][uU][cC][eE]_[lL][aA][bB][sS]_[aA][cC][cC][eE][sS][sS]_[kK][eE][yY]['"]?\s*[:=,]\s*['"]?[a-fA-F0-9]{8}-(?:[a-fA-F0-9]{4}-){3}[a-fA-F0-9]{12}['"]?::Sauce Labs Access Key
+
+# --- Payment & Financial (Stripe, Square, etc.) ---
+sk_live_[0-9a-zA-Z]{24}::Stripe Live Secret Key
+rk_live_[0-9a-zA-Z]{24}::Stripe Live Restricted Key
+sk_test_[0-9a-zA-Z]{24}::Stripe Test Secret Key
+rk_test_[0-9a-zA-Z]{24}::Stripe Test Restricted Key
+sq0atp-[0-9A-Za-z\-_]{22,}::Square Access Token
+sq0csp-[0-9A-Za-z\-_]{43}::Square OAuth Secret
+([pP][aA][yY][pP][aA][lL]|[bB][rR][aA][iI][nN][tT][rR][eE][eE]).*([kK][eE][yY]|[sS][eE][cC][rR][eE][tT]|[tT][oO][kK][eE][nN])['"]?\s*[:=]\s*['"]?E[CLV][a-zA-Z0-9\-_]{30,50}['"]?::PayPal/Braintree Live Credential
+shpss_[a-fA-F0-9]{32}::Shopify Shared Secret
+shpat_[a-fA-F0-9]{32}::Shopify Access Token
+shpca_[a-fA-F0-9]{32}::Shopify Custom App Access Token
+fk-live-[a-zA-Z0-9]{30,}::Flutterwave Live Key
+[aA][dD][yY][eE][nN]_[aA][pP][iI]_[kK][eE][yY]['"]?\s*[:=]\s*['"]?AQ[a-zA-Z0-9/+=]+==['"]?::Adyen API Key
+[rR][aA][zZ][oO][rR][pP][aA][yY]_[kK][eE][yY]_[iI][dD]['"]?\s*[:=]\s*['"]?rzp_(test|live)_[a-zA-Z0-9]{12,18}['"]?::Razorpay Key ID
+[rR][aA][zZ][oO][rR][pP][aA][yY]_[kK][eE][yY]_[sS][eE][cC][rR][eE][tT]['"]?\s*[:=]\s*['"]?[a-zA-Z0-9]{20,30}['"]?::Razorpay Key Secret
+
+# --- Communication (Slack, Twilio, etc.) ---
+xox[baprs]-[0-9]{12}-[0-9]{12,13}-[a-zA-Z0-9]{24,25}::Slack Token
+https://hooks\.slack\.com/services/T[a-zA-Z0-9_]{8,}/B[a-zA-Z0-9_]{8,}/[a-zA-Z0-9_]{24}::Slack Webhook URL
+AC[a-f0-9]{32}::Twilio Account SID
+SK[a-f0-9]{32}::Twilio API Key SID
+SG\.[a-zA-Z0-9\._-]{66}::SendGrid API Key v3
+[a-f0-9]{32}-us[0-9]{1,2}::Mailchimp API Key
+[mM][aA][iI][lL][gG][uU][nN](.{0,20})?[kK][eE][yY]['"]?\s*[:=]\s*['"]?key-[a-f0-9]{32}['"]?::Mailgun API Key
+[0-9]{8,10}:AA[0-9A-Za-z\-_]{33,35}::Telegram Bot Token
+[M-Z][A-Za-z\d]{23}\.[\w-]{6}\.[\w-]{27,38}::Discord Bot/User Token
+(?:https?://)?(?:ptb\.|canary\.)?discord(?:app)?\.com/api/webhooks/(\d{17,20})/[a-zA-Z0-9\._-]+::Discord Webhook URL
+
+# --- Social Media & Content ---
+EAACEdEose0cBA[a-zA-Z0-9]{150,250}::Facebook Access Token
+[tT][wW][iI][tT][tT][eE][rR](.{0,20})?[kK][eE][yY]['"]?\s*[:=]\s*['"]?[a-zA-Z0-9]{20,28}['"]?::Twitter API Key
+[tT][wW][iI][tT][tT][eE][rR](.{0,20})?[sS][eE][cC][rR][eE][tT]['"]?\s*[:=]\s*['"]?[a-zA-Z0-9]{45,55}['"]?::Twitter API Secret
+
+# --- Package Managers (NPM, PyPI) ---
+npm_[a-zA-Z0-9]{36}::NPM Access Token
+//registry\.npmjs\.org/:_authToken=[a-zA-Z0-9%_-]+::NPM Auth Token (in .npmrc)
+pypi-AgEIcHlwaS5vcmc[A-Za-z0-9\-_]{50,100}::PyPI Upload Token
+
+# --- Misc Services ---
+[fF][aA][sS][tT][lL][yY]_[aA][pP][iI]_[tT][oO][kK][eE][nN]['"]?\s*[:=]\s*[a-zA-Z0-9_]{32}::Fastly API Token
+[fF][iI][gG][mM][aA]_[tT][oO][kK][eE][nN]['"]?\s*[:=]\s*[0-9]{5}-[a-f0-9]{8}-(?:[a-f0-9]{4}-){3}[a-f0-9]{12}::Figma Personal Access Token
+NRAK-[A-Z0-9]{27}::New Relic Admin Key
+NRJS-[a-f0-9]{19}::New Relic Browser Ingest Key
+atcl_v1\.[a-zA-Z0-9\-_\.=]{150,}::Airtable API Key
+[dD][yY][nN][aA][tT][rR][aA][cC][eE]_[tT][oO][kK][eE][nN]['"]?\s*=\s*dt0c01\.[A-Z0-9]{24}\.[A-Z0-9]{64}::Dynatrace API Token
+PT[a-zA-Z0-9\-_]{42,}::Pivotal Tracker API Token
+
+# =====================================================================================
+# Part 5: Generic & Keyword-based Secrets
+# =====================================================================================
+
+# --- High Entropy & Generic Formats ---
+ey[A-Za-z0-9-_=]+\.ey[A-Za-z0-9-_=]+\.?[A-Za-z0-9-_.+/=]*::JSON Web Token (JWT)
+0x[a-fA-F0-9]{64}::Ethereum/Generic Private Key (hex)
+[a-zA-Z0-9_]*(key|token|secret|password|passwd|pwd|api_key|secret_key|auth_token|access_token|client_secret|client_id)[a-zA-Z0-9_]*\s*[:=]\s*['\"]([a-zA-Z0-9\-\/_+]{32,})['\"]::Generic High Entropy Secret
+\b(key|api-key)-[a-f0-9]{32}\b::Generic Prefixed API Key
+
+# --- HTTP Authorization ---
+Authorization:\s*Basic\s+[a-zA-Z0-9=+/]+::HTTP Basic Authentication Header
+[Bb]earer\s+[a-zA-Z0-9\._\-\/+=]+::Bearer Token
+
+# --- Generic Keyword-based Detection ---
+([cC][lL][iI][eE][nN][tT]_[sS][eE][cC][rR][eE][tT]|[cC][lL][iI][eE][nN][tT]-[sS][eE][cC][rR][eE][tT])\s*[:=]\s*['\"]?[a-zA-Z0-9\._~\-]{30,60}['\"]?::OAuth Client Secret (keyword)
+[aA][pP][iI][_-]?[kK][eE][yY]\s*[:=]\s*['\"]?[a-zA-Z0-9\._-]{20,60}['\"]?::Generic API Key (keyword)
+[sS][eE][cC][rR][eE][tT][_-]?[kK][eE][yY]\s*[:=]\s*['\"]?[a-zA-Z0-9\._-]{20,60}['\"]?::Generic Secret Key (keyword)
+[aA][uU][tT][hH][_-]?[tT][oO][kK][eE][nN]\s*[:=]\s*['\"]?[a-zA-Z0-9\._-]{20,60}['"]?::Generic Auth Token (keyword)
+[aA][cC][cC][eE][sS][sS][_-]?[tT][oO][kK][eE][nN]\s*[:=]\s*['\"]?[a-zA-Z0-9\._-]{20,60}['"]?::Generic Access Token (keyword)
+[cC][lL][iI][eE][nN][tT][_-]?[iI][dD]\s*[:=]\s*['\"]?[a-zA-Z0-9\._-]{20,60}['"]?::Generic Client ID (keyword)
+[dD][bB][_-]?[pP][aA][sS][sS][wW][oO][rR][dD]\s*[:=]\s*['\"]?[a-zA-Z0-9\._\-\!\@\#\$\%\^\&\*]{8,}['\"]?::Database Password (keyword)
+[aA][dD][mM][iI][nN][_-]?[pP][aA][sS][sS]\s*[:=]\s*['\"]?[a-zA-Z0-9\._\-\!\@\#\$\%\^\&\*]{8,}['"]?::Admin Password (keyword)
+([pP][aA][sS][sS][wW][oO][rR][dD]|[pP][aA][sS][sS][wW][dD]|[pP][wW][dD])\s*[:=]\s*['\"]?[a-zA-Z0-9\._\-\!\@\#\$\%\^\&\*]{8,}['\"]?::Generic Password (keyword)
